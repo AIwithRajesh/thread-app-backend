@@ -1,12 +1,11 @@
+import UserService, { type userInterface } from "../../../services/user.js";
+
 export const mutation = {
   Mutation: {
-    createUser: async (
-      _: any,
-      { first_name, last_name, email, password }: any
-    ) => {
-      // Example resolver (replace with Prisma or DB call)
-      console.log(first_name, last_name);
-      return "User created successfully";
+    createUser: async (_: any, payload: userInterface) => {
+      console.log(payload);
+      const res = await UserService.createUser(payload);
+      return res.id;
     },
   },
 };
